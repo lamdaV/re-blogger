@@ -6,11 +6,24 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {dropdownIcon: "folder outline", id: 0};
+    // Get the home page.
+    let homeType;
+    let homeId;
+    Object.keys(this.props.postMapping).forEach((key) => {
+      this.props.postMapping[key].forEach((post, index) => {
+        if (post.name === "home") {
+          homeType = key;
+          homeId = index;
+        }
+      })
+    })
+    this.state = {dropdownIcon: "folder outline", type: homeType, id: homeId};
 
+    // Bind keys.
     this.handleDropdownOpen = this.handleDropdownOpen.bind(this);
     this.handleDropdownClose = this.handleDropdownClose.bind(this);
     this.handleItemClick = this.handleItemClick.bind(this);
+    this.makeDropdownMenus = this.makeDropdownMenus.bind(this);
     this.makeDropdownItems = this.makeDropdownItems.bind(this);
   }
 
@@ -23,12 +36,23 @@ class App extends Component {
   }
 
   handleItemClick(event, data) {
-    this.setState({id: data.id});
+    this.setState({type: data.category, id: data.id});
+  }
+
+  makeDropdownMenus(key, index) {
+    return(
+      <Dropdown key={key + index} item simple text={key}>
+        <Dropdown.Menu>
+          {this.props.postMapping[key].map(this.makeDropdownItems)}
+        </Dropdown.Menu>
+      </Dropdown>
+    );
   }
 
   makeDropdownItems(item, index) {
     return (
-      <Dropdown.Item id={index} key={item.name + index} active={this.state.id === index}
+      <Dropdown.Item category={item.type} id={index} key={item.name + index}
+        active={this.state.type === item.type && this.state.id === index}
         onClick={this.handleItemClick}>
         {item.name}
       </Dropdown.Item>
@@ -39,16 +63,11 @@ class App extends Component {
     return (
       <div>
         <Menu>
-          <Dropdown item simple icon={this.state.dropdownIcon}
-            onOpen={this.handleDropdownOpen} onClose={this.handleDropdownClose}>
-            <Dropdown.Menu>
-              {this.props.postMapping.posts.map(this.makeDropdownItems)}
-            </Dropdown.Menu>
-          </Dropdown>
+          {Object.keys(this.props.postMapping).map(this.makeDropdownMenus)}
         </Menu>
 
         <Segment>
-          <Post content={this.props.postMapping.posts[this.state.id].content}/>
+          <Post content={this.props.postMapping[this.state.type][this.state.id].content}/>
         </Segment>
 
       </div>

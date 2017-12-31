@@ -12,17 +12,20 @@ console.log(dirs);
 
 console.log("[ INFO ] generating posts.json...");
 const readOptions = {encoding: "utf8"};
-let posts = [{name: "home", content: fs.readFileSync("./posts/home.md", readOptions)}];
+let posts = {};
 dirs.forEach((dir) => {
   if (Array.isArray(dir)) {
+    let dirname = path.basename(path.dirname(dir[0]));
+    let data = [];
     dir.forEach((file) => {
       let content = fs.readFileSync(file, readOptions);
       let name = path.basename(file, path.extname(file));
-      posts.push({name, content});
-    })
+      data.push({name, content, type: dirname});
+    });
+    posts[dirname] = data;
   }
 });
 
 const postJSONPath = "./src/posts.json";
 console.log(`[ INFO ] writing to '${postJSONPath}'`);
-fs.writeFileSync("./src/posts.json", JSON.stringify({posts}));
+fs.writeFileSync(postJSONPath, JSON.stringify(posts));
