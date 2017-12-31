@@ -24,8 +24,6 @@ class App extends Component {
 
   handleItemClick(event, data) {
     this.setState({id: data.id});
-    console.log(event);
-    console.log(data);
   }
 
   makeDropdownItems(item, index) {
