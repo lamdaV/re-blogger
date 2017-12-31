@@ -1,5 +1,12 @@
 {
   "name": "re-blogger",
+  "description": "React Blogging Setup",
+  "keywords": ["react", "blog"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lamdaV/re-blogger.git"
+  },
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -15,5 +22,6 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "post:update": "node buildscript.js"
-  }
+  },
+  "author": "lamdav"
 }
