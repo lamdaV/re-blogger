@@ -1,10 +1,8 @@
 {
   "name": "re-blogger",
   "description": "React Blogging Setup",
-  "keywords": [
-    "react",
-    "blog"
-  ],
+  "homepage": "https://lamdav.github.io/re-blogger/",
+  "keywords": ["react", "blog"],
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -24,10 +22,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "post:update": "node buildscript.js"
+    "post:update": "node buildscript.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
-  "author": "lamdav",
-  "devDependencies": {
-    "gh-pages": "^1.1.0"
-  }
+  "author": "lamdav"
 }
