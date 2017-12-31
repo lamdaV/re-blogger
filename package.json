@@ -21,8 +21,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "post:update": "node buildscript.js",
-    "demo": "yarn build && mv ./build/static/js/* ./build/ && rm -rf ./build/static"
+    "post:update": "node buildscript.js"
   },
   "author": "lamdav"
 }
