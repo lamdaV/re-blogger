@@ -1,7 +1,10 @@
 {
   "name": "re-blogger",
   "description": "React Blogging Setup",
-  "keywords": ["react", "blog"],
+  "keywords": [
+    "react",
+    "blog"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -23,5 +26,8 @@
     "eject": "react-scripts eject",
     "post:update": "node buildscript.js"
   },
-  "author": "lamdav"
+  "author": "lamdav",
+  "devDependencies": {
+    "gh-pages": "^1.1.0"
+  }
 }
