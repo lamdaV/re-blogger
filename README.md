@@ -21,9 +21,10 @@ or
 
 This will recursively search the `posts` directory and
 generate a new `posts.json` mapping in the `src`
-directory. The only required file in the `posts`
-directory is the `home.md` file. This represents the
-home page.
+directory. Each post should be in a subdirectory. The
+subdirectory's name serves as the category of the
+posts. There **must** exist a `home.md` file in one of
+the subdirectories. This will serve as your homepage.
 
 ## Usage
 1. Add a `markdown` file in the `posts` directory.
